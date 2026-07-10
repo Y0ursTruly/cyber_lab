@@ -16,7 +16,7 @@ if [ -z "$(which john)" ]; then
   sudo mv ../run/* ~/.local/bin/
   cd ../..
   sudo rm -rf john
-  echo 'alias john="/usr/local/bin/john"' >> ~/.bashrc
+  echo 'alias john="~/.local/bin/john"' >> ~/.bashrc
   sudo apt autoremove
 fi
 
