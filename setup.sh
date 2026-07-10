@@ -1,6 +1,6 @@
 mkdir -p LAB
 if [ ! -f 'LAB/LWP.json' ]; then
-  echo '{"Protocol":"[protocol here]","Address":"[ip/site here]"}' > 'LAB/LWP.json'
+  echo '{"Protocol":"[protocol here]","Address":"[ip/site here]","Port":null}' > 'LAB/LWP.json'
 fi
 
 sudo apt-get update -y && sudo apt-get install -y --no-install-recommends apt-utils && sudo apt upgrade -y
@@ -13,7 +13,7 @@ if [ -z "$(which john)" ]; then
   cd john/src
   ./configure
   sudo make -j$(nproc)
-  sudo mv ../run/* /usr/local/bin/
+  sudo mv ../run/* ~/.local/bin/
   cd ../..
   sudo rm -rf john
   echo 'alias john="/usr/local/bin/john"' >> ~/.bashrc
