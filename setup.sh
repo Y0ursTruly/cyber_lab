@@ -6,6 +6,7 @@ fi
 sudo apt-get update -y && sudo apt-get install -y --no-install-recommends apt-utils && sudo apt upgrade -y
 sudo apt-get update -y && sudo apt-get install -y git cmake curl wget gcc make build-essential tzdata
 sudo apt-get install -y libssl-dev zlib1g-dev libgmp-dev ftp nmap binwalk exiftool socat tshark ffuf
+sudo apt-get install -y openvpn
 
 if [ -z "$(which john)" ]; then
   git clone https://github.com/openwall/john -b bleeding-jumbo john
