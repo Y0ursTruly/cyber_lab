@@ -47,5 +47,5 @@ async function requestURL(url,req,res,data=""){
   })
 }
 http.createServer(async(req,res)=>{try{
-  return res.end(await requestURL(`${Protocol}://${Address}`,req,res))
+  return res.end(await requestURL(`${Protocol}://${Address}${req.url}`,req,res))
 }catch(err){console.log(err)}}).listen(process.env.PORT||8080)
