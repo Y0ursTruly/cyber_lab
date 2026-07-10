@@ -17,8 +17,9 @@ if [ -z "$(which john)" ]; then
   cd ../..
   sudo rm -rf john
   echo 'alias john="~/.local/bin/john"' >> ~/.bashrc
-  sudo apt autoremove
+  . ~/.bashrc
 fi
+sudo apt autoremove
 
 if [ ! -f 'LAB/rockyou.txt' ]; then
   wget -O LAB/rockyou.txt.gz https://github.com/zacheller/rockyou/raw/refs/heads/master/rockyou.txt.tar.gz
