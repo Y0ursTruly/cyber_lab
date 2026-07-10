@@ -1,7 +1,7 @@
 //LWP means Lazy Web Proxy
 
 let http=require('node:http'), https=require('node:https')
-let {Protocol,Address}=require('./LAB/LWP.json')
+let {Protocol,Address,Port}=require('./LAB/LWP.json')
 //json file is in the form {"Protocol":"[protocol here]","Address":"[ip/site here]"}
 let ab_map=[], str_map={__proto__:null}
 for(let i=0;i<256;i++){
@@ -35,7 +35,8 @@ async function proxyURL(url,req,res,data=""){
   catch{return "INVALID URL"}
   if(headers.host) headers.host=hostname;
   return new Promise(resolve=>{
-    let options={hostname, port:protocol==="https:"?443:80, path:pathname+search, method, headers}
+    let port=typeof Port==="number"? Port: protocol==="https:"?443:80
+    let options={hostname, port, path:pathname+search, method, headers}
     let request=(protocol==="https:"?https:http).request(options,async function respond(response){
       if(headers.origin) response.headers['Access-Control-Allow-Origin']=req.headers.origin;
       res.writeHead(response.statusCode,response.headers);
