@@ -30,7 +30,7 @@ async function bufferChunk(stream,maxLength=Infinity){
     stream.on('error', reject)
   })
 }
-async function requestURL(url,req,res,data=""){
+async function proxyURL(url,req,res,data=""){
   try{var {hostname,protocol,pathname,search}=new URL(url), {headers,method}=req}
   catch{return "INVALID URL"}
   if(headers.host) headers.host=hostname;
@@ -47,7 +47,7 @@ async function requestURL(url,req,res,data=""){
   })
 }
 http.createServer(async(req,res)=>{try{
-  return res.end(await requestURL(
+  return res.end(await proxyURL(
     `${Protocol}://${Address}${req.url}`, req, res,
     ['POST','PUT','PATCH'].includes(req.method)? await bufferChunk(req): ""
   ))
